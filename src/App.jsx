@@ -24,7 +24,7 @@ export default function App() {
     // 外層容器區塊，使用 Bootstrap 的 container 樣式
     <section className="container">
       {/* Bootstrap 的 row 樣式，用於排版 */}
-      <div className="row mt-5">
+      <div className="row my-5">
         {/* 傳遞產品資料與點擊事件處理函式給 ProductList 元件 */}
         <ProductList products={products} onProductClick={setTempProduct} />
 
