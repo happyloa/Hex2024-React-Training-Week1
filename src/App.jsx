@@ -9,9 +9,9 @@ export default function App() {
   const [tempProduct, setTempProduct] = useState(null);
 
   return (
-    <div className="container">
+    <section className="container">
       <div className="row mt-5">
-        <div className="col-md-6">
+        <main className="col-md-6">
           <h2>產品列表</h2>
           <table className="table">
             <thead>
@@ -41,11 +41,11 @@ export default function App() {
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="col-md-6">
+        </main>
+        <aside className="col-md-6">
           <h2>單一產品細節</h2>
           {tempProduct ? (
-            <div className="card mb-3">
+            <article className="card mb-3">
               <img
                 src={tempProduct.imageUrl}
                 className="card-img-top primary-image"
@@ -73,12 +73,12 @@ export default function App() {
                   ))}
                 </div>
               </div>
-            </div>
+            </article>
           ) : (
             <p className="text-secondary">請選擇一個商品查看</p>
           )}
-        </div>
+        </aside>
       </div>
-    </div>
+    </section>
   );
 }
