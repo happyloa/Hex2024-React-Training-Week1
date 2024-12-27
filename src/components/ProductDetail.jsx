@@ -1,8 +1,26 @@
+import { useState } from "react"; // 引入 useState
+
 import styles from "./ProductDetail.module.css"; // 引入模組化 CSS，控制特定樣式
 
 // 定義 ProductDetail 元件，接收一個 prop：
 // 1. tempProduct: 被選中的產品資料，為物件格式
 export default function ProductDetail({ tempProduct }) {
+  // 定義狀態來控制 Modal 的顯示與選中圖片 URL
+  const [showModal, setShowModal] = useState(false);
+  const [selectedImage, setSelectedImage] = useState("");
+
+  // 打開 Modal 並設置選中的圖片
+  const handleImageClick = (url) => {
+    setSelectedImage(url);
+    setShowModal(true);
+  };
+
+  // 關閉 Modal
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedImage("");
+  };
+
   return (
     // 定義側邊區塊，使用 Bootstrap 的 col-md-6 設定寬度
     <aside className="col-md-6">
@@ -65,6 +83,7 @@ export default function ProductDetail({ tempProduct }) {
                     height: "80px", // 設置固定高度
                     objectFit: "cover", // 確保圖片比例不變
                   }}
+                  onClick={() => handleImageClick(url)} // 添加點擊事件
                 />
               ))}
             </div>
@@ -73,6 +92,44 @@ export default function ProductDetail({ tempProduct }) {
       ) : (
         // 如果沒有選中產品，顯示提示訊息
         <p className="text-secondary">請選擇一個商品來查看</p>
+      )}
+
+      {/* Bootstrap Modal */}
+      {showModal && (
+        <div
+          className="modal fade show d-block" // 顯示 Modal 的類名
+          tabIndex="-1"
+          role="dialog">
+          <div className="modal-dialog modal-dialog-centered" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">商品圖片</h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  aria-label="Close"
+                  onClick={handleCloseModal} // 關閉 Modal
+                ></button>
+              </div>
+              <div className="modal-body">
+                <img
+                  src={selectedImage}
+                  alt="預覽圖片"
+                  style={{ width: "100%", height: "auto" }} // 確保圖片自適應
+                />
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleCloseModal} // 關閉 Modal
+                >
+                  關閉
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </aside>
   );
