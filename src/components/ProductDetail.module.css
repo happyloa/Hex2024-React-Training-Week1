@@ -1,0 +1,10 @@
+.detailImg {
+  height: 500px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .detailImg {
+    height: 300px;
+  }
+}
