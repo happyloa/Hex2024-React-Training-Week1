@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import "./App.css";
 
-function App() {
+export default function App() {
   const [tempProduct, setTempProduct] = useState(null);
   const products = [
     {
@@ -135,5 +135,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
